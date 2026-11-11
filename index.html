@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>빼빼로가 도착했습니다</title>
+<meta name="description" content="BM 조에게 빼빼로가 도착했습니다. 받겠습니까?">
+<meta property="og:title" content="빼빼로가 도착했습니다">
+<meta property="og:description" content="받겠습니까? — From. 성관">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EFE6; --pink:#FF48B0; --teal:#00838A; --ink:#16224A;
+  --f-display:"Black Han Sans","IBM Plex Sans KR","Apple SD Gothic Neo",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);overflow:hidden;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;z-index:20;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .13 0 0 0 0 .29 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.stage{position:fixed;inset:0;display:grid;place-items:center;
+  padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.gift{display:grid;justify-items:center;gap:22px;text-align:center;max-width:520px;transition:opacity .45s,transform .45s}
+.gift.out{opacity:0;transform:scale(.9) translateY(20px);pointer-events:none}
+.from{margin:0;font:600 12px/1 var(--f-mono);letter-spacing:.2em;color:var(--teal)}
+/* the parcel */
+.box{position:relative;width:180px;height:150px;animation:wiggle 2.4s ease-in-out infinite}
+.box .body{position:absolute;left:10px;right:10px;bottom:0;height:100px;background:var(--pink);border:3px solid var(--ink)}
+.box .lid{position:absolute;left:0;right:0;top:22px;height:32px;background:var(--pink);border:3px solid var(--ink);transform-origin:20% 100%;transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+.box .ribbon-v{position:absolute;left:50%;top:22px;bottom:0;width:22px;margin-left:-11px;background:var(--teal);mix-blend-mode:multiply}
+.box .bow{position:absolute;left:50%;top:0;width:76px;height:30px;margin-left:-38px;transition:transform .55s cubic-bezier(.3,1.6,.5,1)}
+.box .bow::before,.box .bow::after{content:"";position:absolute;top:0;width:34px;height:26px;border:3px solid var(--ink);background:var(--teal);border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+.box .bow::before{left:0;transform:rotate(-14deg)}.box .bow::after{right:0;transform:rotate(14deg)}
+.box .sticks{position:absolute;left:50%;bottom:60px;width:70px;margin-left:-35px;height:0;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;transition:height .6s cubic-bezier(.3,1.5,.5,1) .15s,opacity .2s .15s}
+.box .sticks i{display:block;width:14px;height:100%;border:2px solid var(--ink);background:linear-gradient(var(--pink) 0 68%,#E6C79A 68%)}
+.box .sticks i:nth-child(2){background:linear-gradient(var(--ink) 0 68%,#E6C79A 68%)}
+.gift.opening .box{animation:none}
+.gift.opening .lid{transform:rotate(-38deg) translate(-14px,-30px)}
+.gift.opening .bow{transform:translate(70px,-60px) rotate(40deg)}
+.gift.opening .sticks{height:120px;opacity:1}
+@keyframes wiggle{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-5deg)}82%{transform:rotate(5deg)}88%{transform:rotate(-3deg)}94%{transform:rotate(2deg)}}
+h1{margin:0;display:grid;font-family:var(--f-display);font-weight:400;font-size:clamp(34px,9vw,58px);line-height:1.1;text-wrap:balance}
+h1>span{grid-area:1/1}
+h1 .a{color:var(--pink)}
+h1 .b{color:var(--teal);mix-blend-mode:multiply;transform:translate(3px,2px)}
+.q{margin:0;font-size:19px;font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+button{font:600 17px/1 var(--f-body);border:3px solid var(--ink);padding:16px 26px;cursor:pointer;color:var(--ink);transition:transform .15s,box-shadow .15s}
+button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.yes{background:var(--pink);box-shadow:4px 4px 0 var(--ink)}
+.yes:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.no{background:transparent}
+.no.dodge{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.hint{margin:0;min-height:1.4em;font-size:14px;color:var(--teal)}
+/* player */
+.player{position:fixed;inset:0;display:grid;place-items:center;gap:16px;align-content:center;opacity:0;pointer-events:none;transition:opacity .5s;
+  padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.player.on{opacity:1;pointer-events:auto}
+video{display:block;width:min(100%,calc((100vh - 140px) * 16 / 9));max-width:1280px;aspect-ratio:16/9;background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--teal)}
+.after{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;transition:opacity .4s}
+.after.on{opacity:1}
+.after a,.after button{font:600 15px/1 var(--f-body);border:3px solid var(--ink);padding:13px 18px;background:var(--paper);color:var(--ink);text-decoration:none;cursor:pointer}
+.after .again{background:var(--pink)}
+.rot{margin:0;font-size:13px;color:var(--teal);display:none}
+@media (orientation:portrait) and (max-width:600px){.rot{display:block}}
+@media (prefers-reduced-motion:reduce){.box{animation:none}*{transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<main class="stage">
+  <section class="gift" id="gift">
+    <p class="from">FROM. 성관 → TO. BM 조</p>
+    <div class="box" aria-hidden="true">
+      <div class="sticks"><i></i><i></i><i></i></div>
+      <div class="body"></div><div class="ribbon-v"></div>
+      <div class="lid"></div><div class="bow"></div>
+    </div>
+    <h1><span class="a">빼빼로가 도착했습니다</span><span class="b" aria-hidden="true">빼빼로가 도착했습니다</span></h1>
+    <p class="q">받겠습니까?</p>
+    <div class="btns">
+      <button class="yes" id="yes" type="button">받기</button>
+      <button class="no" id="no" type="button">안 받기</button>
+    </div>
+    <p class="hint" id="hint">소리를 켜고 받아 주세요</p>
+  </section>
+</main>
+
+<section class="player" id="player" aria-label="빼빼로데이 영상">
+  <video id="v" src="reel.mp4" playsinline preload="auto"></video>
+  <p class="rot">가로로 돌리면 더 크게 볼 수 있어요</p>
+  <div class="after" id="after">
+    <button class="again" id="again" type="button">한 번 더 보기</button>
+    <a href="reel.mp4" download="줴줴_빼빼로.mp4">영상 저장</a>
+  </div>
+</section>
+
+<script>
+const gift=document.getElementById('gift'),player=document.getElementById('player'),v=document.getElementById('v'),
+      after=document.getElementById('after'),yes=document.getElementById('yes'),no=document.getElementById('no'),hint=document.getElementById('hint');
+let opened=false;
+function open(){
+  if(opened)return;opened=true;
+  v.currentTime=0;v.muted=false;
+  const p=v.play();                       // must start inside the click so sound is allowed
+  if(p&&p.then)p.then(()=>v.pause()).catch(()=>{});
+  gift.classList.add('opening');
+  setTimeout(()=>{gift.classList.add('out');player.classList.add('on');v.currentTime=0;v.play().catch(()=>{v.controls=true})},900);
+}
+yes.addEventListener('click',open);
+const lines=['진짜요?','다시 생각해 보세요','줴줴이야~','거절은 거절합니다'];let n=0;
+no.addEventListener('click',()=>{
+  if(n<lines.length){hint.textContent=lines[n];no.classList.add('dodge');
+    no.style.transform=`translate(${(n%2?-1:1)*(30+n*14)}px,${(n%2?1:-1)*12}px) scale(${1-n*.15})`;n++}
+  if(n>=lines.length){no.textContent='받기';no.style.transform='';no.className='yes';no.onclick=open}
+});
+v.addEventListener('ended',()=>after.classList.add('on'));
+document.getElementById('again').addEventListener('click',()=>{after.classList.remove('on');v.currentTime=0;v.play()});
+</script>
+</body>
+</html>
